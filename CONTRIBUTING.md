@@ -1,70 +1,91 @@
 # Contributing to awesome-aisecurity
 
-Thanks for your interest in contributing to **awesome-aisecurity**! 🎉  
+Thank you for your interest in contributing to **awesome-aisecurity**! 🎉  
+This is a curated list of resources about **AI system security** (not “AI for security”), including adversarial ML, LLM security, MLSecOps, privacy, governance, and more.
 
-This project aims to be a **curated list** of high-quality resources about **AI system security**:
-threat modeling, adversarial ML, LLM & GenAI security, MLSecOps, privacy, governance, and more.
-
-We welcome pull requests, issues, and suggestions.
-
----
-
-## 1. What kind of contributions are welcome?
-
-We are looking for resources that are **directly related to the security of AI systems**, including but not limited to:
-
-- Threat modeling, frameworks, and standards for AI/ML/LLM systems.
-- Attacks against models, data, and pipelines:
-  - Adversarial examples, data poisoning, backdoors.
-  - Model stealing / model extraction.
-  - Privacy attacks (membership inference, model inversion, etc.).
-  - LLM jailbreaks, prompt injection, data exfiltration, unsafe tool use.
-- Defenses, evaluation frameworks, benchmarks, and datasets.
-- Open-source tools and libraries that help:
-  - Test, attack, or defend AI systems.
-  - Monitor and harden AI pipelines, deployments, and infrastructure.
-- MLSecOps / MLOps / supply chain security resources.
-- Good long-form explainers, tutorials, and courses that help practitioners understand AI security.
-
-We prefer:
-
-- Publicly accessible resources (no private links, no obvious “dead” links).
-- Well-maintained or widely used tools.
-- Papers with clear contributions or impact in the community.
+感谢你愿意为 **awesome-aisecurity** 做出贡献！🎉  
+本仓库专注于 **AI 系统本身的安全**（而不是“用 AI 做安全”），包括对抗机器学习、LLM 安全、MLSecOps、隐私与治理等方向的资源。
 
 ---
 
-## 2. What is *out of scope*?
+## 1. What kind of contributions are welcome?  
+## 1. 接受哪些类型的贡献？
 
-To keep the list focused, we generally **do not** include:
+You are welcome to contribute:
 
-- Generic security resources that do not specifically address AI/ML/LLM.
-- “AI for security” (for example: using ML for intrusion detection, malware classification, etc.),
-  except when they explicitly discuss **adversarial ML / robustness / security issues of the AI model itself**.
-- Marketing pages with almost no technical or conceptual depth.
-- Paywalled content that cannot be accessed at all without a subscription.
+- Links to **high-quality resources**:
+  - Open-source tools and libraries
+  - Academic papers, surveys, tutorials, talks
+  - Benchmarks, datasets, evaluation frameworks
+  - Threat models, standards, governance frameworks
+- Improvements to the **structure**, categorization, or descriptions
+- Translations or localization improvements (especially English ↔ 中文)
 
-If in doubt, feel free to open an issue and ask.
+我们欢迎的贡献包括但不限于：
+
+- 各种 **高质量资源链接**：
+  - 开源工具与库  
+  - 学术论文、综述、教程与演讲  
+  - 基准（benchmark）、数据集、评测框架  
+  - 威胁模型、标准与治理框架  
+- 对目录结构、分类方式、条目描述的完善  
+- 对中英文内容的翻译 / 本地化优化（尤其是中英双语）
+
+Please avoid:
+
+- General security content **not specifically tied to AI systems**
+- Pure “AI for security” content (e.g., “ML-based IDS for network traffic”) without any discussion of the **security of the AI model** itself
+- Personal blog posts with very limited scope or unclear technical quality
+
+建议避免：
+
+- 与 AI 无关的一般信息安全内容  
+- 仅仅属于 “AI for Security”（比如只讲“用 ML 做入侵检测”，但不涉及模型自身安全问题）的内容  
+- 技术质量不明、个人推广性质明显的博客 / 文章
 
 ---
 
-## 3. Formatting rules
+## 2. Before adding a resource  
+## 2. 在添加资源之前
 
-Please follow these **simple formatting rules** so the list stays clean and readable.
+Please check:
 
-### 3.1 General rules
+1. **Relevance**  
+   - The resource should clearly be about **security / privacy / robustness / governance of AI systems**.
 
-1. Use unordered lists with `-` (hyphen) for all items.
-2. Keep **one item per line**.
-3. Prefer a **single, concise sentence** that explains:
-   - What the resource is, and  
-   - Why it is useful in the context of AI security.
-4. Place the item under the **most appropriate section**.
-5. When reasonable, keep items in **alphabetical order** within a section.
+2. **Quality**  
+   - Well-known, peer-reviewed, or community-recognized resources are preferred.  
+   - For new projects, please ensure they are usable and documented.
 
-### 3.2 Example formats
+3. **Link stability**  
+   - Use official / canonical URLs when possible (project homepage, arXiv, publisher, etc.).  
+   - Avoid obvious dead links or temporary file-sharing links.
 
-**Tools / libraries**
+在添加资源前，可以简单自查一下：
+
+1. **相关性**  
+   - 资源需要“直指” AI 系统的安全 / 隐私 / 鲁棒性 / 治理等问题。
+
+2. **质量**  
+   - 优先选择在学术界或社区中有一定认可度的资源。  
+   - 对于新项目，至少应具备基本可用性与文档。
+
+3. **链接稳定性**  
+   - 尽量使用官方链接（项目主页、arXiv、出版社主页等）。  
+   - 避免明显短期失效的临时链接。
+
+---
+
+## 3. Formatting rules  
+## 3. 格式规范
+
+To keep the list readable and consistent, please use the following styles.
+
+为确保列表可读、风格统一，请尽量遵守以下格式。
+
+### 3.1 Tools / Libraries 工具与开源库
+
+**English format:**
 
 ```md
 - [Project Name](https://example.com) – One-line description of what it does and why it’s useful.
