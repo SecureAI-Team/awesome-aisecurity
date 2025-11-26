@@ -75,7 +75,9 @@ _Last update: 2025-11-26 (keep this up to date manually)_
 > Frameworks, standards, and threat models for securing AI systems.
 
 - **Standards & Guidelines**
-  - *TODO:* `- [AI Risk Management / Security Standard](https://example.com) - What it covers.`
+  - [MITRE ATLAS](https://atlas.mitre.org/) - A living knowledge base of adversary tactics and techniques against AI systems, inspired by MITRE ATT&CK. :contentReference[oaicite:0]{index=0}
+  - [NIST AI Risk Management Framework (AI RMF 1.0)](https://www.nist.gov/itl/ai-risk-management-framework) - A framework to help organizations manage risks to individuals, organizations, and society associated with AI systems. :contentReference[oaicite:1]{index=1}
+  - [OWASP Top 10 for Large Language Model Applications](https://genai.owasp.org/llm-top-10/) - The top 10 most critical security vulnerabilities in LLM applications and associated guidance. :contentReference[oaicite:2]{index=2}
 - **Threat Models & Taxonomies**
   - *TODO:* `- [Threat Model / Taxonomy Name](https://example.com) - Scope (e.g., data, training, inference, supply chain).`
 - **Checklists & Best Practices**
