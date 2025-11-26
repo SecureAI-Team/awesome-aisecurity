@@ -75,7 +75,11 @@ _最近一次更新时间（手动维护）：2025-11-26_
 > AI 安全相关的威胁建模方法、标准与最佳实践。
 
 - **标准与指南**
-  - TODO：`- [AI 风险管理 / 安全标准名称](https://example.com) - 适用场景与覆盖范围。`
+  - [MITRE ATLAS](https://atlas.mitre.org/) - 面向 AI 系统攻击战术与技术的知识库，可用于威胁建模与攻防演练。 :contentReference[oaicite:3]{index=3}
+  - [NIST AI RMF 1.0](https://www.nist.gov/itl/ai-risk-management-framework) - NIST 发布的 AI 风险管理框架，用于指导组织识别和管理 AI 带来的风险。 :contentReference[oaicite:4]{index=4}
+  - [OWASP Top 10 for LLM Applications](https://genai.owasp.org/llm-top-10/) - 总结 LLM 应用的十大安全风险，适合作为开发与安全评估的参考清单。 :contentReference[oaicite:5]{index=5}
+  - [OWASP Top 10 for LLM（非官方日文翻译）](https://github.com/coky-t/owasp-top-10-for-large-language-model-applications-ja) - LLM Top 10 的日文翻译版，方便日语读者快速上手。 :contentReference[oaicite:6]{index=6}
+
 - **威胁模型与分类体系**
   - TODO：`- [威胁模型 / 分类体系名称](https://example.com) - 针对的数据 / 训练 / 推理 / 供应链等阶段。`
 - **检查清单与最佳实践**
