@@ -202,6 +202,22 @@
   - 网络入侵检测（NIDS）中的对抗 ML
   - 工业控制（ICS / OT）环境中部署 AI 模型的威胁与防护
 
+### 工业 / OT / ICS
+
+   - **AI-Enhanced Intrusion Detection Systems (IDS) for Industrial Control Systems (ICS)**（2025）– 基于真实 / 仿真 ICS 攻击数据集，对多种 AI 入侵检测模型的检测率、误报率和运行开销进行对比评估，重点面向以 PLC 为核心的工业控制网络。
+   
+   - **Survey of Deep Learning Approaches for Securing Industrial Control Systems: A Comparative Analysis**（期刊 Cyber Security and Applications，2025）– 系统梳理用于 ICS 安全的深度学习方法（如 CNN、LSTM、AE、GRU 等），总结常用数据集、威胁模型与实验结果，对不同算法在异常检测 / 入侵检测场景中的表现进行对比分析。
+   
+   - **Digital Twin-Driven Intrusion Detection for Industrial SCADA: A Cyber-Physical Case Study**（期刊 Sensors，2025）– 提出面向工业 SCADA 环境的数字孪生驱动 IDS 框架，通过高保真实体过程仿真、实时传感器建模与对抗攻击注入，结合物理残差与机器学习进行混合异常检测，在工业水处理案例中识别 FDI、DoS、命令注入等攻击。
+   
+   - **Using Digital Twin to Detect Cyber-Attacks in Industrial Control Systems** – 较早提出利用 ICS 数字孪生来发现网络攻击的思路：通过让虚拟工厂在控制逻辑和过程状态上“跟随”真实系统运行，对比虚实差异来识别工业自动化场景中的异常行为与潜在攻击。
+   
+   - **Explainable AI-based Intrusion Detection System for Industry 5.0: An Overview of the Literature, Associated Challenges, the Existing Solutions, and Potential Research Directions**（2024，预印本）– 聚焦 Industry 5.0 制造与 IIoT / ICS 网络中的可解释 AI 入侵检测系统，综述相关工作，讨论可解释性既能帮助安全运营又可能被攻击者滥用的“双刃剑”问题，并指出未来研究方向。
+   
+   - **Neutralizing Adversarial Machine Learning in Industrial Control Systems Using Blockchain**（Cyber Science 会议，2022）– 探讨如何利用区块链增强 ICS 场景下基于机器学习的异常检测能力，通过保护遥测数据、模型更新与决策日志，缓解对抗样本与数据投毒等威胁。
+   
+   - **The Role of Artificial Intelligence in Optimizing Cybersecurity for Industrial Control Systems**（专著章节，2025）– 综述 AI（机器学习 / 深度学习）在 ICS 网络威胁检测、预测分析与自动化响应中的应用，讨论在关键基础设施与 OT 环境落地时面临的隐私合规、系统集成与鲁棒性等挑战。
+
 ---
 
 ## 9. 相关 Awesome 清单
