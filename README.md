@@ -198,6 +198,21 @@ If you want to **contribute**, scroll down to [Contributing](#contributing).
 - Tutorials & surveys on:
   - ML for network intrusion detection and its adversarial weaknesses
   - Adversarial ML for autonomous driving / navigation systems
+### Industrial / OT / ICS
+
+- **AI-Enhanced Intrusion Detection Systems (IDS) for Industrial Control Systems (ICS)** (2025) – Evaluates multiple AI-based IDS models on realistic ICS cyber-attack datasets, comparing detection accuracy, false positives, and runtime when protecting PLC-based control networks.
+
+- **Survey of Deep Learning Approaches for Securing Industrial Control Systems: A Comparative Analysis** (Cyber Security and Applications, 2025) – Comprehensive survey of deep-learning techniques (e.g., CNN, LSTM, AE, GRU) used to secure ICS, including datasets, threat models, and comparative performance results for anomaly and intrusion detection.
+
+- **Digital Twin-Driven Intrusion Detection for Industrial SCADA: A Cyber-Physical Case Study** (Sensors, 2025) – Proposes a digital-twin-driven IDS framework for SCADA environments, combining high-fidelity process simulation, real-time sensor modelling, adversarial attack injection, and hybrid anomaly detection to identify FDI, DoS, and command-injection attacks in an industrial water-treatment testbed.
+
+- **Using Digital Twin to Detect Cyber-Attacks in Industrial Control Systems** – Earlier work that demonstrates how an ICS digital twin mirroring control logic and process state can be used to spot cyber-attacks by comparing the behaviour of physical and virtual plants in industrial automation environments.
+
+- **Explainable AI-based Intrusion Detection System for Industry 5.0: An Overview of the Literature, Associated Challenges, the Existing Solutions, and Potential Research Directions** (2024, preprint) – Surveys XAI-based IDS for Industry 5.0 manufacturing and IIoT/ICS networks, analysing how explainability techniques benefit defenders while also introducing new adversarial attack surfaces.
+
+- **Neutralizing Adversarial Machine Learning in Industrial Control Systems Using Blockchain** (Cyber Science, 2022) – Explores how blockchain can harden ML-based anomaly detection pipelines in ICS against adversarial examples and data poisoning by securing telemetry, model updates, and decision logs.
+
+- **The Role of Artificial Intelligence in Optimizing Cybersecurity for Industrial Control Systems** (book chapter, 2025) – Overview chapter on how AI (ML/DL) enhances ICS cybersecurity across real-time threat detection, predictive analytics, and automated incident response, while discussing deployment challenges in critical infrastructure and OT networks.
 
 ---
 
