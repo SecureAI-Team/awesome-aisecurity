@@ -1,289 +1,246 @@
-# Awesome AI Security
+
+# awesome-aisecurity
+
+> 一个专注于 **AI 系统安全** 的资源清单 —— 覆盖威胁建模、对抗样本、LLM / 生成式 AI 安全、MLSecOps、隐私与治理等方向。
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-一个专注于 **“AI 系统安全（Security of AI Systems）”** 的精选资源列表，内容包括开源库、工具、学术论文、标准与框架、数据集以及实战案例等。
+🌏 多语言版本：**简体中文** | [English](README.md)
 
-> 关注点：**如何保护 AI 系统本身的安全与可信**（模型 / 数据 / 流水线 / 基础设施 / 治理），而不是 “用 AI 做网络安全”。
+---
 
-[English README](./README.md)
+## 初衷与范围说明
+
+这个仓库关注的是 **“AI 本身的安全”**，而不是“用 AI 做安全”。
+
+主要关注（大致）以下几个维度：
+
+- 面向 AI / ML / LLM 的攻击与防御：对抗样本、数据投毒、模型窃取、隐私推断、越狱 / Jailbreak 等
+- 模型与系统的鲁棒性、隐私与安全评估：工具、框架、基准、数据集
+- 标准与治理：威胁建模、风险管理框架（如 NIST AI RMF 等）
+- MLSecOps / MLOps / 供应链安全：数据、模型、流水线、依赖组件的全生命周期安全
+- 行业场景：网络安全、工业 / OT、医疗、自动驾驶等（后续会逐步丰富）
+
+目标读者包括：安全研究人员、算法工程师、红蓝队、架构师，以及需要系统性思考“AI 成为攻击面”问题的从业者。
+
+---
+
+## 快速上手（Quick Start）
+
+如果你刚开始接触 AI 安全，可以按下面三步走：
+
+1. **先看整体威胁版图**
+
+   - [MITRE ATLAS](https://atlas.mitre.org/) – 面向 AI/ML 系统的攻击战术与技术知识库，类似 AI 版 ATT&CK。
+   - [MITRE Adversarial ML Threat Matrix](https://github.com/mitre/advmlthreatmatrix) – 用 ATT&CK 风格梳理机器学习系统的攻击路径与案例。
+   - [NIST AI Risk Management Framework (AI RMF 1.0)](https://www.nist.gov/itl/ai-risk-management-framework) – NIST 的 AI 风险管理框架，从治理、风险、度量等维度给出方法。
+   - [OWASP Machine Learning Security Top 10](https://owasp.org/www-project-machine-learning-security-top-10/) – 总结机器学习系统的十大安全风险。
+   - [OWASP Top 10 for Large Language Model Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/) – 面向 LLM 应用的十大安全风险（提示词注入、数据泄露等）。
+
+2. **用工具“上手做一遍”**
+
+   - [Adversarial Robustness Toolbox (ART)](https://github.com/Trusted-AI/adversarial-robustness-toolbox) – IBM / LF AI 社区维护的 ML 安全工具箱，支持逃逸、投毒、模型窃取与隐私推断等攻击与防御。
+   - [CleverHans](https://github.com/cleverhans-lab/cleverhans) – 经典对抗样本库，可用于构造攻击与防御、做鲁棒性基准。
+   - [Foolbox](https://github.com/bethgelab/foolbox) – 基于 PyTorch / TF / JAX 的对抗攻击工具箱，适合快速做鲁棒性实验。
+   - [Giskard](https://github.com/Giskard-AI/giskard-oss) – 自动检测 ML / LLM 应用中的性能、偏差与安全问题。
+   - [garak](https://github.com/NVIDIA/garak) – LLM 漏洞扫描工具，支持越狱、数据泄露、错误信息等多种检查。
+
+3. **把安全能力融入工程与运维（MLSecOps）**
+
+   - [awesome-MLSecOps](https://github.com/RiccardoBiosas/awesome-MLSecOps) – 围绕 MLSecOps 的工具与文章清单。
+   - [awesome-llm-security](https://github.com/corca-ai/awesome-llm-security) – LLM 安全相关工具与文档。
+   - [Awesome LM SSP](https://github.com/CryptoAILab/Awesome-LM-SSP) – 大模型安全 / 安全性 / 隐私相关的论文与资料合集。
+
+想要参与贡献的话，可以直接跳到 [贡献指南](#贡献指南)。
 
 ---
 
 ## 目录
 
-- [动机与范围](#动机与范围)
-- [基础与学习资源](#基础与学习资源)
-- [威胁建模与框架](#威胁建模与框架)
-- [对抗样本与传统 Adversarial ML](#对抗样本与传统-adversarial-ml)
-- [LLM 与生成式 AI 安全](#llm-与生成式-ai-安全)
-- [隐私、安全性与治理](#隐私安全性与治理)
-- [供应链与 MLOps 安全](#供应链与-mlops-安全)
-- [基础设施与运行时安全](#基础设施与运行时安全)
-- [数据集与评测基准](#数据集与评测基准)
-- [行业 / 场景化 AI 安全](#行业--场景化-ai-安全)
-- [相关 Awesome 列表与外部资源](#相关-awesome-列表与外部资源)
+- [初衷与范围说明](#初衷与范围说明)
+- [快速上手（Quick Start）](#快速上手quick-start)
+- [1. 威胁建模与框架](#1-威胁建模与框架)
+- [2. 对抗机器学习（Adversarial ML）](#2-对抗机器学习adversarial-ml)
+- [3. LLM 与生成式 AI 安全](#3-llm-与生成式-ai-安全)
+- [4. 隐私、安全性与治理](#4-隐私安全性与治理)
+- [5. MLSecOps、MLOps 与供应链安全](#5-mlsecopsmlops-与供应链安全)
+- [6. 数据集与基准（Benchmarks）](#6-数据集与基准benchmarks)
+- [7. 学习资料与教程](#7-学习资料与教程)
+- [8. 行业 / 领域场景的 AI 安全](#8-行业--领域场景的-ai-安全)
+- [9. 相关 Awesome 清单](#9-相关-awesome-清单)
 - [贡献指南](#贡献指南)
-- [许可证](#许可证)
+- [项目状态与规划](#项目状态与规划)
+- [License](#license)
 
 ---
 
-## 动机与范围
+## 1. 威胁建模与框架
 
-从传统机器学习到大模型 / 多模态模型，AI 系统在 **数据、模型、流水线、基础设施与治理** 各个环节都引入了新的攻击面。
+### 1.1 通用 AI / ML 威胁建模
 
-本仓库的目标是：
+- [MITRE ATLAS](https://atlas.mitre.org/) – 面向 AI/ML 系统攻击战术与技术的知识库，可用于威胁建模、攻防推演。
+- [MITRE Adversarial ML Threat Matrix](https://github.com/mitre/advmlthreatmatrix) – 以 ATT&CK 风格整理 ML 系统的攻击路径、案例与防护思路。
+- [OWASP Machine Learning Security Top 10](https://owasp.org/www-project-machine-learning-security-top-10/) – 总结机器学习系统各阶段的十大风险。
+- [OWASP Top 10 for Large Language Model Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/) – 针对 LLM 应用的“十大安全风险”清单。
+- [ML Security Cheat Sheet](https://mlsec.dev/) – 面向入门者的机器学习安全速查表，涵盖基本威胁与概念。
 
-- 做一张 **AI 安全领域的导航图**；
-- 帮助研究者与工程师快速找到 **可靠的工具、论文与框架**；
-- 尽量打通 **学术研究** 与 **工程实践 / 工业落地** 之间的鸿沟。
+### 1.2 风险管理、治理与标准
 
-**包含的内容（In scope）**
-
-- 面向 **AI 系统本身** 的安全、鲁棒性与可信：
-  - 对抗样本、模型窃取、数据投毒、后门等攻击与防御；
-  - LLM / GenAI 安全（Prompt Injection、Jailbreak、数据外泄等）；
-  - 隐私攻击与防御（差分隐私、联邦学习安全等）；
-  - 模型 / 数据 / 依赖等 **供应链安全** 与 MLOps 安全；
-  - 模型服务与推理基础设施安全；
-  - AI 风险管理、治理与合规相关资源。
-
-**不直接覆盖（Out of scope）**
-
-- 与 AI 无关的通用网络安全内容；
-- “AI for Security”（如：用 ML 做入侵检测）——这类内容会通过链接跳转到其它列表，而不是在此重复收录。
-
-_最近一次更新时间（手动维护）：2025-11-26_
+- [NIST AI Risk Management Framework (AI RMF 1.0)](https://www.nist.gov/itl/ai-risk-management-framework) – NIST 发布的 AI 风险管理框架，从治理、风险、评估与管理等环节给出结构化方法。
+- *SoK: Security and Privacy in Machine Learning* – 对 ML 安全与隐私威胁 / 防御进行系统化梳理的论文（Papernot 等）。
+- *SoK: Data Reconstruction Attacks Against Machine Learning Models* – 聚焦数据重构攻击的威胁、度量与基准。
+- *SoK: Data Minimization in Machine Learning* – 从数据最小化视角讨论 ML 生命周期中的隐私与安全。
 
 ---
 
-## 基础与学习资源
+## 2. 对抗机器学习（Adversarial ML）
 
-> 入门与系统学习 AI 安全的书籍、综述论文、课程、博客等。
+### 2.1 工具与库
 
-- **书籍 / 综述**
-  - TODO：`- **书名 / 综述题目**（年份）- 一句话描述贡献与侧重点。[链接](https://example.com)`
-- **教程 / 课程**
-  - TODO：`- [课程 / 教程名称](https://example.com) - 面向对象与主要内容。`
-- **博客 / 周报 / Newsletter**
-  - TODO：`- [博客 / Newsletter 名称](https://example.com) - 更新频率与特色。`
+- [Adversarial Robustness Toolbox (ART)](https://github.com/Trusted-AI/adversarial-robustness-toolbox) – 覆盖逃逸、投毒、模型窃取、隐私推断等攻击与防御的 Python 工具箱。
+- [CleverHans](https://github.com/cleverhans-lab/cleverhans) – 经典对抗样本库，为模型鲁棒性评估提供基准攻击与防御实现。
+- [Foolbox](https://github.com/bethgelab/foolbox) – 支持 PyTorch / TensorFlow / JAX 的对抗攻击库，适合快速 benchmark。
+- [AdvBox](https://github.com/advboxes/AdvBox) – 支持多框架、多场景的对抗样本工具箱（含黑盒攻击等）。
+- [RobustBench](https://robustbench.github.io/) – 对抗鲁棒模型与标准化评测的集合，附带库与 leaderboard。
 
----
+### 2.2 综述与代表性论文
 
-## 威胁建模与框架
-
-> AI 安全相关的威胁建模方法、标准与最佳实践。
-
-- **标准与指南**
-  - [MITRE ATLAS](https://atlas.mitre.org/) - 面向 AI 系统攻击战术与技术的知识库，可用于威胁建模与攻防演练。 :contentReference[oaicite:3]{index=3}
-  - [NIST AI RMF 1.0](https://www.nist.gov/itl/ai-risk-management-framework) - NIST 发布的 AI 风险管理框架，用于指导组织识别和管理 AI 带来的风险。 :contentReference[oaicite:4]{index=4}
-  - [OWASP Top 10 for LLM Applications](https://genai.owasp.org/llm-top-10/) - 总结 LLM 应用的十大安全风险，适合作为开发与安全评估的参考清单。 :contentReference[oaicite:5]{index=5}
-  - [OWASP Top 10 for LLM（非官方日文翻译）](https://github.com/coky-t/owasp-top-10-for-large-language-model-applications-ja) - LLM Top 10 的日文翻译版，方便日语读者快速上手。 :contentReference[oaicite:6]{index=6}
-
-- **威胁模型与分类体系**
-  - TODO：`- [威胁模型 / 分类体系名称](https://example.com) - 针对的数据 / 训练 / 推理 / 供应链等阶段。`
-- **检查清单与最佳实践**
-  - TODO：`- [Checklist / 指南名称](https://example.com) - 适用生命周期阶段（如设计 / 开发 / 部署）。`
+- *Security Matters: A Survey on Adversarial Machine Learning* – 系统梳理对抗机器学习的攻击 / 防御思路。
+- *SoK: Security and Privacy in Machine Learning* – 从安全与隐私视角系统总结 ML 威胁与防护。
+- *Adversarial Machine Learning Attacks and Defense Methods in the Cyber Security Domain* – 聚焦网络安全场景下的对抗 ML 攻击与防御（Rosenberg 等）。
+- *Adversarial Machine Learning: A Survey on the Influence of Different Attacks on Deep Learning Models* – 概述不同攻击对深度学习模型的影响。
+- *Defense Strategies for Adversarial Machine Learning* – 综合讨论防御策略与局限性。
 
 ---
 
-## 对抗样本与传统 Adversarial ML
+## 3. LLM 与生成式 AI 安全
 
-> 对抗机器学习相关攻击、防御以及工具库。
+### 3.1 指南与风险分类
 
-### 攻击方法
+- [OWASP Top 10 for Large Language Model Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/) – LLM 应用风险的“官方入门清单”。
+- [OWASP LLM Top 10 非官方日文翻译](https://github.com/coky-t/owasp-top-10-for-large-language-model-applications-ja) – 日语读者可参考。
+- [open-source-llm-scanners](https://github.com/psiinon/open-source-llm-scanners) – 开源 LLM 安全扫描工具列表。
 
-- 逃逸攻击（Evasion / Adversarial Examples）
-- 数据投毒与后门攻击
-- 模型窃取 / 模型提取
-- 成员推断 / 属性推断
+### 3.2 工具与框架
 
-示例格式：
+- [garak](https://github.com/NVIDIA/garak) – LLM 漏洞扫描工具，可测试幻觉、越狱、数据泄露、毒性内容等。
+- [LLM Guard](https://github.com/protectai/llm-guard) – 用于 LLM 交互安全加固的工具包（输入校验、输出过滤等）。
+- [DeepTeam](https://github.com/confident-ai/deepteam) – 面向 LLM 系统红队 / 渗透测试的开源框架。
+- [Giskard](https://github.com/Giskard-AI/giskard-oss) – 自动发现 ML / LLM 应用中的性能、偏差与安全问题。
+- [cyber-security-llm-agents](https://github.com/NVISOsecurity/cyber-security-llm-agents) – 基于 AutoGen 的网络安全领域 LLM Agent 集合。
 
-- TODO：`- **论文 / 工具名称**（会议/年份）- 攻击类型 + 核心思想。[Paper](https://example.com) · [Code](https://example.com)`
+### 3.3 基准与数据集
 
-### 防御与鲁棒训练
-
-- 鲁棒优化与可证明鲁棒性方法
-- 对抗样本检测 / 监控
-- 蒸馏等其他防御手段
-
-示例格式：
-
-- TODO：`- **防御方法名称**（会议/年份）- 防御的威胁类型与适用场景。[Paper](https://example.com) · [Code](https://example.com)`
-
-### 工具与库
-
-- TODO：`- [库 / 工具名称](https://example.com) - 支持的框架（PyTorch / TensorFlow 等）与主要功能。`
+- [JailbreakBench](https://github.com/JailbreakBench/jailbreakbench) – 面向 LLM 越狱攻击的公开鲁棒性基准与评测库。
+- [JBB-Behaviors 数据集](https://huggingface.co/datasets/JailbreakBench/JBB-Behaviors) – 用于测试 LLM 产生有害内容的“滥用行为”数据集。
+- *JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models* – NeurIPS 2024 基准论文。
+- （WIP）其它越狱 / 提示词注入相关数据集：AdvBench、HarmBench、JailbreakDiffBench、JailbreakV 等。
 
 ---
 
-## LLM 与生成式 AI 安全
+## 4. 隐私、安全性与治理
 
-> 面向大语言模型、多模态模型以及智能体（Agent）的安全问题与防护。
-
-### 攻击
-
-- Prompt Injection / Prompt 漏洞利用
-- Jailbreak 与策略绕过
-- 数据外泄与隐私信息推断
-- 通过工具调用 / Agent 工作流的攻击
-
-示例格式：
-
-- TODO：`- **论文 / 资源名称**（年份）- 覆盖的威胁类型与核心结论。[Paper](https://example.com)`
-
-### 防御与 Guardrails
-
-- 安全策略与内容过滤
-- Guardrail 框架、安全网关（Proxy / Gateway）等
-- Red Teaming 方法论与评测框架
-- LLM 安全 / 安全性评测基准
-
-示例格式：
-
-- TODO：`- [框架 / 工具名称](https://example.com) - 集成方式（SDK / Proxy / SaaS 等）与解决的问题。`
-
-### 工具与平台
-
-- TODO：`- [工具 / 平台名称](https://example.com) - 部署方式（托管 / 自建）及关注的安全场景。`
+- [NIST AI RMF 1.0](https://www.nist.gov/itl/ai-risk-management-framework) – 从组织治理、风险识别、度量与管理等角度定义 AI 风险管理框架。
+- *SoK: Security and Privacy in Machine Learning* – 涵盖模型反演、成员推断等隐私攻击及相应防御。
+- *SoK: Security and Privacy Risks of Healthcare AI* – 聚焦医疗领域 AI 的安全与隐私风险。
+- *SoK: Data Minimization in Machine Learning* – 从数据最小化角度讨论 ML 系统中数据使用与暴露。
+- *SoK: Data Reconstruction Attacks Against Machine Learning Models* – 系统化梳理数据重构攻击类型与度量方法。
 
 ---
 
-## 隐私、安全性与治理
+## 5. MLSecOps、MLOps 与供应链安全
 
-> 隐私保护、AI 安全性与治理 / 合规方面的资源。
-
-### 隐私攻击与防御
-
-- 成员推断 / 属性推断攻击
-- 差分隐私训练与推理
-- 联邦学习安全（恶意客户端、模型更新篡改等）
-
-示例格式：
-
-- TODO：`- **论文名称**（会议/年份）- 所在场景（集中式 / 联邦）及攻击 / 防御类型。[Paper](https://example.com)`
-
-### 安全性与对齐
-
-- 安全性红队与评估
-- 部署阶段的安全策略与流程
-- 人在回路（Human-in-the-loop）机制
-
-### 治理、合规与政策
-
-- AI 风险管理框架与合规参考
-- 监管指引与行业规范
-- 模型卡 / 系统卡 / 风险说明文档等实践
+- [awesome-MLSecOps](https://github.com/RiccardoBiosas/awesome-MLSecOps) – 聚焦 MLSecOps（ML + DevSecOps）的工具与资源清单。
+- [MLSecOps-DevSecOps-Awesome](https://github.com/noobpk/MLSecOps-DevSecOps-Awesome) – 结合 MLSecOps 与 DevSecOps 的精选资源。
+- [MLSecOps 仓库](https://github.com/Benjamin-KY/MLSecOps) – 关注将机器学习集成到安全运营中的实践与策略。
+- [OWASP Machine Learning Security Top 10](https://owasp.org/www-project-machine-learning-security-top-10/) – 非常适合与 MLOps 流水线结合的风险视图。
+- [Automating ML Security Checks using CI/CD](https://circleci.com/blog/automating-machine-learning-security-checks-using-ci-cd/) – 如何在 CI/CD 中加入 ML 安全检查的实践文章。
+- [Analyzing the Security of Machine Learning Research Code](https://developer.nvidia.com/blog/analyzing-the-security-of-machine-learning-research-code/) – NVIDIA AI Red Team 关于 ML 研究代码安全性的经验总结。
 
 ---
 
-## 供应链与 MLOps 安全
+## 6. 数据集与基准（Benchmarks）
 
-> 覆盖数据、模型、依赖、流水线的端到端 AI 供应链安全。
+### 6.1 常见扰动 / 污染鲁棒性
 
-### 模型与数据供应链
+- [ImageNet-C](https://zenodo.org/records/2235448) – 在 ImageNet 验证集上施加多种常见扰动，用于评估模型在“非理想环境”下的鲁棒性。
+- [CIFAR-10-C / CIFAR-100-C](https://zenodo.org/records/2535967) – 针对 CIFAR 系列的扰动鲁棒性基准（19 种扰动 × 5 个强度）。
+- [RobustBench](https://robustbench.github.io/) – 整合了对抗鲁棒模型与标准化评测流程。
 
-- 模型仓库 / Model Hub 的安全（签名、验证、来源追踪）
-- 数据集来源与完整性保护
-- 依赖包、第三方组件的 SBOM / AI-BOM / 模型卡
+### 6.2 LLM 越狱与安全基准
 
-### MLOps 与 CI/CD 安全
-
-- 训练 / 部署流水线安全
-- 密钥管理与身份与访问控制（IAM）
-- 安全的模型注册表与灰度发布策略
-
-示例格式：
-
-- TODO：`- [工具 / 框架名称](https://example.com) - 在 MLOps 生命周期中所处位置与作用。`
+- [JailbreakBench](https://github.com/JailbreakBench/jailbreakbench) – 面向 LLM 越狱攻击的公开基准与评测框架。
+- [JBB-Behaviors 数据集](https://huggingface.co/datasets/JailbreakBench/JBB-Behaviors) – 包含 100 类滥用行为的安全测试数据集。
+- 更多 Jailbreak / 安全性数据集：AdvBench、HarmBench、Qualifire prompt-injection benchmark、JailbreakDiffBench 等。
 
 ---
 
-## 基础设施与运行时安全
+## 7. 学习资料与教程
 
-> 围绕模型服务与推理环境的基础设施安全。
+### 7.1 课程、教程与速查表
 
-- 机密计算与硬件隔离（TEE / enclave 等）
-- 容器 / K8s 环境中的模型服务安全
-- 网络安全、API 网关与速率限制
-- AI 工作负载的日志、监控与审计
+- [ML Security Cheat Sheet](https://mlsec.dev/) – 为机器学习安全初学者准备的概念 / 威胁速查表。
+- *Introduction to ML Security*（ELSA AI 课程模块） – 提供 Slides / 视频 / 代码示例的入门课程。
+- *A Beginner's Guide to Adversarial Machine Learning* – 面向对抗 ML 入门者的大会教程演讲。
+- *Five Essential Machine Learning Security Papers*（NCC Group Blog） – 精选 5 篇“必读” ML 安全论文并附解读。
 
-示例格式：
+### 7.2 书籍与长文
 
-- TODO：`- [解决方案 / 项目名称](https://example.com) - 支持的云平台 / 基础设施与核心特性。`
-
----
-
-## 数据集与评测基准
-
-> 用于 AI 安全研究与评估的公开数据集与基准。
-
-- 攻击基准（对抗样本、数据投毒等）
-- 防御与鲁棒性评测基准
-- LLM 安全 / 安全性评测数据集与基准
-
-示例格式：
-
-- TODO：`- [数据集 / 基准名称](https://example.com) - 覆盖任务、威胁类型与授权许可。`
+- *Machine Learning Security Principles* – 系统讲解 ML 安全原则与实践的书籍。
+- *Machine Learning Security: The Ultimate Power Guide* – 关于 ML 威胁与防御的长篇入门指南。
 
 ---
 
-## 行业 / 场景化 AI 安全
+## 8. 行业 / 领域场景的 AI 安全
 
-> 针对特定行业或场景的 AI 安全研究与实践。
+> 该部分目前只放少量代表性资源，后续会重点补充工业 / OT / 关键基础设施等方向。
 
-- **工业与 OT / ICS**
-  - TODO：`- [资源 / 案例名称](https://example.com) - 相关 AI 应用场景与主要安全问题。`
-- **汽车与智能交通**
-- **医疗与生命科学**
-- **金融与银行**
-- **其他行业场景**
+- *A Survey of Adversarial Machine Learning in Cyber Warfare* – 讨论对抗 ML 在网络战与军事场景中的应用与风险。
+- *SoK: Security and Privacy Risks of Healthcare AI* – 分析医疗 AI 系统中的安全与隐私风险。
+- 其它值得持续关注的方向：
+  - 自动驾驶 / 交通领域的对抗样本与鲁棒性
+  - 网络入侵检测（NIDS）中的对抗 ML
+  - 工业控制（ICS / OT）环境中部署 AI 模型的威胁与防护
 
 ---
 
-## 相关 Awesome 列表与外部资源
+## 9. 相关 Awesome 清单
 
-> 一些高质量的相关列表和资源，避免在本仓库重复收录。
+如果你需要更垂直或更重度的资源，可以参考：
 
-- TODO：`- [Awesome 列表名称](https://github.com/owner/repo) - 例如专注于 LLM 安全 / 隐私 / Safety 等方向。`
+- [awesome-adversarial-machine-learning（yenchenlin）](https://github.com/yenchenlin/awesome-adversarial-machine-learning) – 对抗 ML 论文、博客、演讲等的经典清单。
+- [awesome-adversarial-machine-learning（man3kin3ko）](https://github.com/man3kin3ko/awesome-adversarial-machine-learning) – 更偏向“机器学习安全”大类的 Awesome 列表。
+- [Awesome AI for Security](https://amanpriyanshu.github.io/Awesome-AI-For-Security/) – 聚焦“用 AI 做安全”（而不是“AI 的安全”）。
+- [awesome-MLSecOps](https://github.com/RiccardoBiosas/awesome-MLSecOps) – MLSecOps 方向必读。
+- [awesome-llm-security](https://github.com/corca-ai/awesome-llm-security) – LLM 安全相关工具与资源。
+- [Awesome LM SSP](https://github.com/CryptoAILab/Awesome-LM-SSP) – 大模型安全 / 安全性 / 隐私阅读清单。
+- [Awesome LLM4Security](https://github.com/liu673/Awesome-LLM4Security) – 中文语境下的 LLM 安全资料整理。
+- [Awesome LLM Security Papers](https://github.com/kydahe/Awesome-LLM-Security-Papers) – 针对 LLM 系统安全的论文列表。
+- [Awesome LLM Safety](https://github.com/ydyjya/Awesome-LLM-Safety) – LLM 安全性相关资源与教程。
 
 ---
 
 ## 贡献指南
 
-非常欢迎任何形式的贡献！
+欢迎各种形式的贡献，包括但不限于：补充链接、调整结构、增加新章节、翻译更多语言等。
 
-为了保持列表的 **质量与聚焦**，建议在提交前检查：
+### 可以贡献什么？
 
-1. **相关性**：与 “AI 系统安全” 直接相关（而非纯粹的通用安全或 AI for Security）。
-2. **质量优先**：宁缺毋滥，优先收录质量高、被社区认可的资源。
-3. **稳定可访问**：尽量使用长期有效的公开链接。
-4. **一句话说明价值**：每个条目都需要一行简洁的中文 / 英文描述，说明它为什么值得看。
-5. **放在合适的分类下**：尽可能选择最贴切的分类。
-6. **分类内按字母顺序（或时间、有明确规则）排序**。
+- 与 **AI 系统安全** 强相关的资源，例如：
+  - 威胁建模、风险框架、合规与治理
+  - 针对模型 / 数据 / 流水线的攻击与防御
+  - 工具、开源库、数据集、基准、教程
+- 可公开访问、相对稳定的链接（尽量避免 404 / 付费墙）。
 
-**提交方式**
+### 格式约定
 
-1. Fork 本仓库；
-2. 新建一个分支；
-3. 按统一格式在相应位置添加条目；
-4. 提交 Pull Request，并在描述中简要说明 “增加了什么 / 为什么有价值”。
+请尽量遵守以下约定：
 
-如果你发现以下问题，也欢迎直接开 Issue：
+1. 使用无序列表（`-`）添加条目。
+2. 每行只放一个条目。
+3. 推荐使用如下格式：
 
-- 分类设计不合理 / 需要新增分类；
-- 链接失效；
-- 资源已经明显过时。
+**工具 / 开源库**
 
----
-
-## 许可证
-
-请根据你的偏好选择适合的许可证，例如：
-
-- [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/)：将列表尽可能开放到公有领域；或
-- [MIT](https://opensource.org/licenses/MIT)：常见的宽松许可证。
-
-> TODO：在仓库中添加 `LICENSE` 文件，并在此处替换为实际使用的许可证说明与链接。
-
+```md
+- [项目名](https://example.com) – 简要说明它做什么、为什么有用（尽量一句话说清楚）。
