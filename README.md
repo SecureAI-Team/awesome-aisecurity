@@ -1,287 +1,244 @@
-# Awesome AI Security
+# awesome-aisecurity
+
+> A curated list of awesome resources on **AI system security** — threat modeling, adversarial ML, LLM & GenAI security, MLSecOps, privacy, governance, and more.
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-A curated list of **awesome resources for securing AI systems** – including open-source libraries, academic papers, standards, frameworks, datasets, and real-world case studies.
-
-> Focus: **Security of AI systems** (models, data, pipelines, infrastructure), not *AI for cybersecurity applications*.
-
-[中文说明 / Chinese README](./README_zh.md)
-
----
-
-## Contents
-
-- [Motivation & Scope](#motivation--scope)
-- [Foundations & Learning Resources](#foundations--learning-resources)
-- [Threat Modeling & Frameworks](#threat-modeling--frameworks)
-- [Adversarial Machine Learning](#adversarial-machine-learning)
-- [LLM & GenAI Security](#llm--genai-security)
-- [Privacy, Safety & Governance](#privacy-safety--governance)
-- [Supply Chain & MLOps Security](#supply-chain--mlops-security)
-- [Infrastructure & Runtime Security](#infrastructure--runtime-security)
-- [Datasets & Benchmarks](#datasets--benchmarks)
-- [Industrial & Domain-specific AI Security](#industrial--domain-specific-ai-security)
-- [Related Awesome Lists & External Resources](#related-awesome-lists--external-resources)
-- [Contributing](#contributing)
-- [License](#license)
+🌏 Read this in other languages: [简体中文](README_zh.md)
 
 ---
 
 ## Motivation & Scope
 
-Modern AI systems (from classical ML to large foundation models) introduce new attack surfaces across **data, models, pipelines, infrastructure, and governance**.
+This list focuses on **security of AI systems themselves**, not just “AI for security”.
 
-This repository aims to:
+It covers (roughly):
 
-- Provide a **curated map** of the AI security landscape.
-- Help practitioners quickly find **reliable tools, papers, and frameworks**.
-- Bridge the gap between **academic research** and **real-world engineering practice**.
+- Attacks against AI models and pipelines (evasion, poisoning, extraction, inference, jailbreak, etc.)
+- Defenses, evaluations, and benchmarks for robustness, privacy, and safety
+- Frameworks, standards, and governance (e.g., threat modeling, risk management)
+- MLSecOps / MLOps / supply chain security for ML & LLM systems
+- Domain-specific AI security (e.g., cyber, industrial, healthcare) — to be expanded over time
 
-**In scope**
-
-- Security, robustness, and trustworthiness **of AI systems**:
-  - Adversarial ML, LLM & GenAI security.
-  - Data poisoning, model stealing, backdoors.
-  - Privacy attacks & defenses.
-  - AI supply chain and MLOps security.
-  - Runtime / infra security for model serving.
-  - AI governance & risk management.
-
-**Out of scope (linked instead of duplicated)**
-
-- General cybersecurity that does not specifically involve AI.
-- “AI for security” (e.g., IDS using ML) – we link to other lists where appropriate.
-
-_Last update: 2025-11-26 (keep this up to date manually)_
+The goal is to provide a **practical starting point** for researchers, engineers, red teamers, and security architects who need to reason about *AI as an attack surface*.
 
 ---
 
-## Foundations & Learning Resources
+## Quick Start
 
-> Books, tutorials, surveys, and entry points into AI security.
+If you’re new to AI security, here’s a suggested reading path:
 
-- **Books & Surveys**
-  - *TODO:* `- **Title of Book / Survey** (Year) - One-line description. [Link](https://example.com)`
-- **Tutorials & Courses**
-  - *TODO:* `- [Course / Tutorial Name](https://example.com) - Short description.`
-- **Blogs & Newsletters**
-  - *TODO:* `- [Blog / Newsletter Name](https://example.com) - Focus & audience.`
+1. **Understand the threat landscape**
+   - [MITRE ATLAS](https://atlas.mitre.org/) – Knowledge base of adversary tactics & techniques against AI/ML systems.
+   - [MITRE Adversarial ML Threat Matrix](https://github.com/mitre/advmlthreatmatrix) – ATT&CK-style matrix mapping attacks on ML.
+   - [NIST AI Risk Management Framework (AI RMF 1.0)](https://www.nist.gov/itl/ai-risk-management-framework) – High-level risk & governance framework for AI.
+   - [OWASP Machine Learning Security Top 10](https://owasp.org/www-project-machine-learning-security-top-10/) – Top risks for ML systems.
+   - [OWASP Top 10 for Large Language Model Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/) – Top risks for LLM apps (prompt injection, data leakage, etc.).
 
----
+2. **Get your hands dirty with tools**
+   - [Adversarial Robustness Toolbox (ART)](https://github.com/Trusted-AI/adversarial-robustness-toolbox) – Comprehensive ML security toolbox (evasion, poisoning, extraction, inference).
+   - [CleverHans](https://github.com/cleverhans-lab/cleverhans) – Classic adversarial examples library.
+   - [Foolbox](https://github.com/bethgelab/foolbox) – Fast adversarial attacks across PyTorch, TensorFlow, JAX.
+   - [Giskard](https://github.com/Giskard-AI/giskard-oss) – Open-source evaluation of performance, bias & security issues for ML/LLM apps.
+   - [garak](https://github.com/NVIDIA/garak) – LLM vulnerability scanner (hallucination, leakage, jailbreaks, etc.).
 
-## Threat Modeling & Frameworks
+3. **Operationalize (MLSecOps & LLM security)**
+   - [awesome-MLSecOps](https://github.com/RiccardoBiosas/awesome-MLSecOps) – MLSecOps tools & resources.
+   - [awesome-llm-security](https://github.com/corca-ai/awesome-llm-security) – Tools, docs, and projects about LLM security.
+   - [Awesome LM SSP](https://github.com/CryptoAILab/Awesome-LM-SSP) – Reading list on large-model safety, security, privacy.
 
-> Frameworks, standards, and threat models for securing AI systems.
-
-- **Standards & Guidelines**
-  - [MITRE ATLAS](https://atlas.mitre.org/) - A living knowledge base of adversary tactics and techniques against AI systems, inspired by MITRE ATT&CK. :contentReference[oaicite:0]{index=0}
-  - [NIST AI Risk Management Framework (AI RMF 1.0)](https://www.nist.gov/itl/ai-risk-management-framework) - A framework to help organizations manage risks to individuals, organizations, and society associated with AI systems. :contentReference[oaicite:1]{index=1}
-  - [OWASP Top 10 for Large Language Model Applications](https://genai.owasp.org/llm-top-10/) - The top 10 most critical security vulnerabilities in LLM applications and associated guidance. :contentReference[oaicite:2]{index=2}
-- **Threat Models & Taxonomies**
-  - *TODO:* `- [Threat Model / Taxonomy Name](https://example.com) - Scope (e.g., data, training, inference, supply chain).`
-- **Checklists & Best Practices**
-  - *TODO:* `- [Checklist / Guide](https://example.com) - What stage of the AI lifecycle it targets.`
-
----
-
-## Adversarial Machine Learning
-
-> Classical and modern adversarial ML: attacks, defenses, and toolkits.
-
-### Attacks
-
-- Evasion attacks (adversarial examples).
-- Poisoning & backdoor attacks.
-- Model stealing / extraction.
-- Membership and attribute inference.
-
-*Example format:*
-
-- *TODO:* `- **Paper / Tool Name** (Conf/Year) - Type of attack + key idea. [Paper](https://example.com) · [Code](https://example.com)`
-
-### Defenses & Robust Training
-
-- Robust optimization & certified defenses.
-- Detection and monitoring of adversarial behavior.
-- Defensive distillation and other mitigation techniques.
-
-*Example format:*
-
-- *TODO:* `- **Defense Name** (Conf/Year) - What threat it mitigates. [Paper](https://example.com) · [Code](https://example.com)`
-
-### Toolkits & Libraries
-
-- *TODO:* `- [Library / Toolkit Name](https://example.com) - Supported frameworks & main features.`
+If you want to **contribute**, scroll down to [Contributing](#contributing).
 
 ---
 
-## LLM & GenAI Security
+## Table of Contents
 
-> Security of large language models, multimodal models, and agentic systems.
-
-### Attacks
-
-- Prompt injection & jailbreaks.
-- Data exfiltration and policy bypass.
-- Cross-tenant leakage, prompt leaking, training data extraction.
-- Agentic / tool-using LLM attacks.
-
-*Example format:*
-
-- *TODO:* `- **Paper / Resource** (Year) - Threat type and key insight. [Paper](https://example.com)`
-
-### Defenses & Guardrails
-
-- Policy enforcement and content filters.
-- Guardrail frameworks, safety layers, and proxies.
-- Red teaming methodologies and evaluation frameworks.
-- Attack / defense benchmarks for LLM security.
-
-*Example format:*
-
-- *TODO:* `- [Framework / Guardrail Tool](https://example.com) - How it integrates (proxy, SDK, gateway, etc.).`
-
-### Tools & Platforms
-
-- *TODO:* `- [Tool Name](https://example.com) - Hosted / self-hosted? What security problems it targets.`
+- [Motivation & Scope](#motivation--scope)
+- [Quick Start](#quick-start)
+- [1. Threat Modeling & Frameworks](#1-threat-modeling--frameworks)
+- [2. Adversarial Machine Learning](#2-adversarial-machine-learning)
+- [3. LLM & GenAI Security](#3-llm--genai-security)
+- [4. Privacy, Safety & Governance](#4-privacy-safety--governance)
+- [5. MLSecOps, MLOps & Supply Chain Security](#5-mlsecops-mlops--supply-chain-security)
+- [6. Datasets & Benchmarks](#6-datasets--benchmarks)
+- [7. Learning Resources](#7-learning-resources)
+- [8. Domain-Specific AI Security](#8-domain-specific-ai-security)
+- [9. Related Awesome Lists](#9-related-awesome-lists)
+- [Contributing](#contributing)
+- [Project Status & Roadmap](#project-status--roadmap)
+- [License](#license)
 
 ---
 
-## Privacy, Safety & Governance
+## 1. Threat Modeling & Frameworks
 
-> Privacy, safety, and governance for AI systems.
+### 1.1 General AI/ML Threat Modeling
 
-### Privacy Attacks & Defenses
+- [MITRE ATLAS](https://atlas.mitre.org/) – Knowledge base of adversary tactics & techniques targeting AI systems, aligned with MITRE ATT&CK-style tactics/techniques.
+- [MITRE Adversarial ML Threat Matrix](https://github.com/mitre/advmlthreatmatrix) – ATT&CK-style framework mapping attacks on ML pipelines, with case studies and mitigations.
+- [OWASP Machine Learning Security Top 10](https://owasp.org/www-project-machine-learning-security-top-10/) – Top 10 security issues for ML systems across the lifecycle (data, models, pipelines).
+- [OWASP Top 10 for Large Language Model Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/) – LLM-specific risks such as prompt injection, insecure plugins, data exfiltration.
+- [ML Security Cheat Sheet](https://mlsec.dev/) – High-level cheat sheet of concepts, threats, and categories in ML security.
 
-- Membership inference / property inference.
-- Differential privacy for model training.
-- Federated learning security.
+### 1.2 Risk Management, Governance & Standards
 
-*Example format:*
-
-- *TODO:* `- **Paper Name** (Conf/Year) - Attack/defense & setting (centralized / federated). [Paper](https://example.com)`
-
-### Safety & Alignment
-
-- Red teaming and safety evaluations.
-- Safety policies for deployment.
-- Human-in-the-loop mechanisms.
-
-### Governance, Compliance & Policy
-
-- AI risk management frameworks.
-- Regulatory guidance and compliance checklists.
-- Model cards, system cards, and documentation practices.
+- [NIST AI Risk Management Framework (AI RMF 1.0)](https://www.nist.gov/itl/ai-risk-management-framework) – Voluntary framework to manage AI risks and improve trustworthiness (governance, mapping, measuring, managing).
+- *SoK: Security and Privacy in Machine Learning* – Systematization-of-Knowledge on ML security & privacy threats and defenses (Papernot et al., 2018).
+- *SoK: Data Reconstruction Attacks Against Machine Learning Models* – Taxonomy and benchmark for reconstruction attacks on ML models.
+- *SoK: Data Minimization in Machine Learning* – Framework for minimizing data exposure in ML pipelines.
 
 ---
 
-## Supply Chain & MLOps Security
+## 2. Adversarial Machine Learning
 
-> Securing the end-to-end AI supply chain: data, models, artifacts, and pipelines.
+### 2.1 Toolkits & Libraries
 
-### Model & Dataset Supply Chain
+- [Adversarial Robustness Toolbox (ART)](https://github.com/Trusted-AI/adversarial-robustness-toolbox) – Python library for ML security (evasion, poisoning, extraction, inference); hosted by LF AI & Data.
+- [CleverHans](https://github.com/cleverhans-lab/cleverhans) – Adversarial examples library for constructing attacks, building defenses, and benchmarking robustness.
+- [Foolbox](https://github.com/bethgelab/foolbox) – Python toolbox for adversarial attacks on deep neural networks (PyTorch, TensorFlow, JAX).
+- [AdvBox](https://github.com/advboxes/AdvBox) – Toolbox for generating adversarial examples across multiple DL frameworks and attack scenarios.
+- [RobustBench](https://robustbench.github.io/) – Benchmark and library for adversarially robust models and standardized evaluation.
 
-- Model hub security and artifact verification.
-- Dataset provenance and integrity.
-- SBOM / AI-BOM / model cards for supply chain transparency.
+### 2.2 Surveys & Key Papers
 
-### MLOps & CI/CD Security
+(Use these to get a big-picture view before diving into specific attacks.)
 
-- Secure training & deployment pipelines.
-- Secrets management, identity and access management (IAM).
-- Secure model registry & rollout strategies.
-
-*Example format:*
-
-- *TODO:* `- [Tool / Framework Name](https://example.com) - Where it fits in the MLOps lifecycle.`
-
----
-
-## Infrastructure & Runtime Security
-
-> Hardening the runtime environment and infrastructure around AI systems.
-
-- Confidential computing and hardware-based isolation.
-- Container / K8s security for model serving.
-- Network security, API gateways, and rate limiting.
-- Logging, monitoring, and audit trails for AI workloads.
-
-*Example format:*
-
-- *TODO:* `- [Solution / Project Name](https://example.com) - Which cloud / platform it supports.`
+- *Security Matters: A Survey on Adversarial Machine Learning* (Li et al.) – Broad survey of adversarial ML attacks and defenses.
+- *SoK: Security and Privacy in Machine Learning* – Threat models and defense taxonomy for ML security (Papernot et al.).
+- *Adversarial Machine Learning Attacks and Defense Methods in the Cyber Security Domain* – Focused on cyber security use cases (Rosenberg et al., ACM CSUR 2021).
+- *Adversarial Machine Learning: A Survey on the Influence of Different Attacks on Deep Learning Models* – Comprehensive review of adversarial attacks and impacts.
+- *Defense Strategies for Adversarial Machine Learning* – Survey of defense mechanisms and their limitations.
 
 ---
 
-## Datasets & Benchmarks
+## 3. LLM & GenAI Security
 
-> Datasets and benchmarks for AI security research and evaluation.
+### 3.1 Guidance & Taxonomies
 
-- Attack benchmarks.
-- Defense and robustness benchmarks.
-- LLM safety / security evaluation datasets.
+- [OWASP Top 10 for Large Language Model Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/) – Canonical list of common LLM risks (prompt injection, data leakage, insecure tools).
+- [OWASP LLM Top 10 – Unofficial Japanese Translation](https://github.com/coky-t/owasp-top-10-for-large-language-model-applications-ja) – Helpful for Japanese readers.
+- [open-source-llm-scanners](https://github.com/psiinon/open-source-llm-scanners) – Curated list of open-source LLM security scanners.
 
-*Example format:*
+### 3.2 Tools & Frameworks
 
-- *TODO:* `- [Dataset / Benchmark Name](https://example.com) - Tasks, threat types, and license.`
+- [garak](https://github.com/NVIDIA/garak) – LLM vulnerability scanner probing for jailbreaks, leakage, misinformation, toxicity, etc.
+- [LLM Guard](https://github.com/protectai/llm-guard) – Security toolkit for LLM interactions (input validation, output filtering).
+- [DeepTeam](https://github.com/confident-ai/deepteam) – LLM red teaming framework for penetration testing and safeguarding LLM systems.
+- [Giskard](https://github.com/Giskard-AI/giskard-oss) – Automatic detection of performance, bias and security issues in ML/LLM applications.
+- [cyber-security-llm-agents](https://github.com/NVISOsecurity/cyber-security-llm-agents) – Collection of AutoGen-based LLM agents for cyber security tasks.
 
----
+### 3.3 Benchmarks & Datasets
 
-## Industrial & Domain-specific AI Security
-
-> AI security resources focused on specific industries and verticals.
-
-- **Industrial & OT / ICS**
-  - *TODO:* `- [Resource / Case Study](https://example.com) - How AI is used and what security issues arise.`
-- **Automotive & Mobility**
-- **Healthcare & Bio**
-- **Finance & Banking**
-- **Other Vertical Domains**
+- [JailbreakBench](https://github.com/JailbreakBench/jailbreakbench) – Open robustness benchmark for jailbreaking LLMs; includes the JBB-Behaviors dataset and evaluation library.
+- [JBB-Behaviors dataset](https://huggingface.co/datasets/JailbreakBench/JBB-Behaviors) – 100 misuse behaviors for probing harmful outputs in LLMs.
+- *JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models* – NeurIPS 2024 benchmark paper.
+- (WIP) Other jailbreak and prompt-injection datasets (AdvBench, HarmBench, Qualifire, etc.).
 
 ---
 
-## Related Awesome Lists & External Resources
+## 4. Privacy, Safety & Governance
 
-> High-quality related lists. Avoid duplicating their content; link instead.
+- [NIST AI RMF 1.0](https://www.nist.gov/itl/ai-risk-management-framework) – Governance, risk, and compliance perspective for managing AI risks.
+- *SoK: Security and Privacy in Machine Learning* – Covers model inversion, membership inference, and other privacy threats.
+- *SoK: Security and Privacy Risks of Healthcare AI* – Domain-specific analysis of security & privacy issues in healthcare AI.
+- *SoK: Data Minimization in Machine Learning* – On reducing data exposure across ML workflows.
+- *SoK: Data Reconstruction Attacks Against Machine Learning Models* – Taxonomy and metrics for reconstruction attacks.
 
-- *TODO:* `- [Awesome List Name](https://github.com/owner/repo) - Focus (e.g., LLM security, privacy, safety, etc.).`
+---
+
+## 5. MLSecOps, MLOps & Supply Chain Security
+
+- [awesome-MLSecOps](https://github.com/RiccardoBiosas/awesome-MLSecOps) – Curated tools, articles and resources for MLSecOps (ML + DevSecOps).
+- [MLSecOps-DevSecOps-Awesome](https://github.com/noobpk/MLSecOps-DevSecOps-Awesome) – Resources at the intersection of MLSecOps & DevSecOps.
+- [MLSecOps](https://github.com/Benjamin-KY/MLSecOps) – Repository focusing on integrating ML with security operations.
+- [OWASP Machine Learning Security Top 10](https://owasp.org/www-project-machine-learning-security-top-10/) – Risk-centric view aligned with ML lifecycle & MLOps pipelines.
+- [Automating ML Security Checks using CI/CD](https://circleci.com/blog/automating-machine-learning-security-checks-using-ci-cd/) – Tutorial on integrating ML security checks into CI/CD.
+- [Analyzing the Security of Machine Learning Research Code](https://developer.nvidia.com/blog/analyzing-the-security-of-machine-learning-research-code/) – NVIDIA AI Red Team guidance on code-level ML security.
+
+---
+
+## 6. Datasets & Benchmarks
+
+### 6.1 Robustness to Corruptions & Perturbations
+
+- [ImageNet-C](https://zenodo.org/records/2235448) – ImageNet-based corruption benchmark for robustness to common corruptions.
+- [CIFAR-10-C / CIFAR-100-C](https://zenodo.org/records/2535967) – Corruption benchmarks for CIFAR datasets (19 corruption types, 5 severity levels).
+- [RobustBench](https://robustbench.github.io/) – Aggregates adversarially robust models and evaluation pipelines.
+
+### 6.2 LLM Jailbreak & Safety Benchmarks
+
+- [JailbreakBench](https://github.com/JailbreakBench/jailbreakbench) – Benchmark and dataset for jailbreak attacks on LLMs.
+- [JBB-Behaviors dataset](https://huggingface.co/datasets/JailbreakBench/JBB-Behaviors) – Misuse behavior dataset for LLM security evaluation.
+- (See also: AdvBench, HarmBench, JailbreakDiffBench, JailbreakV, etc.)
+
+---
+
+## 7. Learning Resources
+
+### 7.1 Courses, Tutorials & Cheat Sheets
+
+- [ML Security Cheat Sheet](https://mlsec.dev/) – Beginner-friendly overview of concepts and threats in ML security.
+- *Introduction to ML Security* (ELSA AI) – Online module introducing ML security with slides, code, and video.
+- *A Beginner's Guide to Adversarial Machine Learning* – Conference tutorial talk for newcomers.
+- *Five Essential Machine Learning Security Papers* (NCC Group blog) – Curated list of key ML security papers with commentary.
+
+### 7.2 Books & Long-form Guides
+
+- *Machine Learning Security Principles* (Packt) – Book covering ML security concepts and best practices.
+- *Machine Learning Security: The Ultimate Power Guide* – Long-form guide on threats and defenses in ML systems.
+
+---
+
+## 8. Domain-Specific AI Security
+
+*(This section is intentionally small for now and will grow as we add more industry- and vertical-specific content.)*
+
+- *A Survey of Adversarial Machine Learning in Cyber Warfare* – Discussion of adversarial ML in military and cyber warfare settings.
+- *SoK: Security and Privacy Risks of Healthcare AI* – Domain-specific SoK on medical/healthcare AI.
+- Tutorials & surveys on:
+  - ML for network intrusion detection and its adversarial weaknesses
+  - Adversarial ML for autonomous driving / navigation systems
+
+---
+
+## 9. Related Awesome Lists
+
+If you’re looking for more specialized or overlapping lists:
+
+- [awesome-adversarial-machine-learning (yenchenlin)](https://github.com/yenchenlin/awesome-adversarial-machine-learning) – Classic list of adversarial ML papers, blogs, and talks.
+- [awesome-adversarial-machine-learning (man3kin3ko)](https://github.com/man3kin3ko/awesome-adversarial-machine-learning) – Broader “ML security” oriented awesome list.
+- [Awesome AI for Security](https://amanpriyanshu.github.io/Awesome-AI-For-Security/) – AI/LLMs applied *to* security operations (as opposed to security *of* AI).
+- [awesome-MLSecOps](https://github.com/RiccardoBiosas/awesome-MLSecOps) – MLSecOps-focused list.
+- [awesome-llm-security](https://github.com/corca-ai/awesome-llm-security) – LLM security tools and documents.
+- [Awesome LM SSP](https://github.com/CryptoAILab/Awesome-LM-SSP) – Safety, security, and privacy for large models.
+- [Awesome LLM4Security](https://github.com/liu673/Awesome-LLM4Security) – Chinese-language curated resources on LLM security.
+- [Awesome LLM Security Papers](https://github.com/kydahe/Awesome-LLM-Security-Papers) – Paper list focusing on LLM system security.
+- [Awesome LLM Safety](https://github.com/ydyjya/Awesome-LLM-Safety) – LLM safety-related resources and tutorials.
 
 ---
 
 ## Contributing
 
-Contributions are very welcome!
+Contributions are very welcome! This project is intentionally **minimal but opinionated** to start with; please help it grow.
 
-To keep this list **useful and focused**, please follow these rules:
+### What we accept
 
-1. **Relevance** – The resource must be clearly about *security of AI systems*.
-2. **Quality over quantity** – We prefer a smaller list of strong, well-maintained resources.
-3. **Public & stable links** – No paywalled or obviously temporary links when possible.
-4. **One-line description** – Explain *why* the item is useful in a single concise sentence.
-5. **Correct category** – Place the item under the most appropriate section.
-6. **Alphabetical order within each section** (when it makes sense).
+- Resources **directly related to the security of AI systems**:
+  - Threat modeling, frameworks, standards
+  - Attacks & defenses (adversarial ML, LLM jailbreaks, poisoning, extraction, inference, etc.)
+  - Tools, libraries, datasets, benchmarks
+  - Good long-form explainers, tutorials, and courses
+- Publicly accessible and reasonably stable links (no dead or private links, please).
 
-**How to contribute**
+### Formatting rules
 
-1. Fork this repo.
-2. Create a branch for your changes.
-3. Add your item(s) following the formatting rules.
-4. Open a Pull Request with a short description (what you added and why).
+Please:
 
-You can also open issues for:
+1. Add items as unordered list items (`-`).
+2. Keep one item per line.
+3. Use these formats:
 
-- Category suggestions
-- Broken links
-- Outdated or deprecated resources
+**Tools / libraries**
 
----
-
-## License
-
-Choose a license that fits your preference, for example:
-
-- [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/) for a public domain-style list, or
-- [MIT](https://opensource.org/licenses/MIT) if you prefer a permissive license.
-
-> TODO: Replace this section with your actual license file and link.
-
+```md
+- [Project Name](https://example.com) – One-line description of what it does and why it’s useful.
