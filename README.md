@@ -24,6 +24,12 @@ It covers (roughly):
 The goal is to provide a **practical starting point** for researchers, engineers, red teamers, and security architects who need to reason about *AI as an attack surface*.
 
 ---
+## 🌐 ASB Open Source Ecosystem
+
+- [ASB Security Schema](https://github.com/SecureAI-Team/asb-security-schema) – 
+  Unified JSON event model for LLM / RAG / Agent security events.
+- [asb-secure-gateway](https://github.com/SecureAI-Team/asb-secure-gateway) – 
+  Minimal reference AI security gateway implementing ASB Schema + OPA.
 
 ## Quick Start
 
