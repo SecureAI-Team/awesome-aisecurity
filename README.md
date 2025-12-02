@@ -3,7 +3,7 @@
 
 > Curated resources for securing AI/ML systems across threat modeling, adversarial ML, LLM security, governance, MLSecOps, and benchmarks.
 
- Read this in other languages: [¼òÌåÖÐÎÄ](README_zh.md)
+ Read this in other languages: [ä¸­æ–‡](README_zh.md)
 
  Contributions welcome! See [CONTRIBUTING](CONTRIBUTING.md) for details.
 
